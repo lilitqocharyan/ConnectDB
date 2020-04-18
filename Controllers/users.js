@@ -12,7 +12,7 @@ User.hasOne(Farmer, {foreignKey: "UserID"})
 User.hasOne(Slaughterhouse, {foreignKey: "UserID"})
 
 //get all Farmer Users
-router.get('/getFarmerUsers',(req,res) => {
+router.get('/getFarmerUsers',verify,(req,res) => {
     User.findAll({
         attributes: ['Email'],
         include: [
@@ -38,7 +38,7 @@ router.get('/getFarmerUsers',(req,res) => {
 
 
 //get all Slaughterhouse Users
-router.get('/getSlaughterhouseUsers',(req,res) => {
+router.get('/getSlaughterhouseUsers',verify,(req,res) => {
     User.findAll({
         attributes: ['Email'],
         include: [
@@ -64,7 +64,7 @@ router.get('/getSlaughterhouseUsers',(req,res) => {
 
 
 // //get  User by id
-// router.get('/getUser/:id',(req,res) => {
+// router.get('/getUser/:id',verify,(req,res) => {
 //     User.findAll({
 //         attributes: ['Email'],
 //         include: [
@@ -102,7 +102,7 @@ router.get('/getSlaughterhouseUsers',(req,res) => {
 
 
 //insert  User 
-router.post('/insertUser',(req,res) => {
+router.post('/insertUser',verify,(req,res) => {
     User.create({
         Email: req.body.email,
         Password: req.body.password
@@ -117,7 +117,7 @@ router.post('/insertUser',(req,res) => {
 
 
 //delete User by id 
-router.delete('/deleteUser/:id',(req,res) => {
+router.delete('/deleteUser/:id',verify,(req,res) => {
     User.destroy({
         where: {
             ID: req.params.id
@@ -133,7 +133,7 @@ router.delete('/deleteUser/:id',(req,res) => {
 
 
 //update User by id 
-router.put('/updateUser/:id',(req,res) => {
+router.put('/updateUser/:id',verify,(req,res) => {
     User.update({
         Email: req.body.email,
         Password: req.body.password

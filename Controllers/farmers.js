@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 router.use(bodyParser.json())
 
 //get all Farmers
-router.get('/getFarmers',(req,res) => {
+router.get('/getFarmers',verify,(req,res) => {
     Farmer.findAll({
         attributes: ['FirstName','LastName','Region','City','Address'],
         raw: true
@@ -20,7 +20,7 @@ router.get('/getFarmers',(req,res) => {
 })
 
 //get  Farmer by id
-router.get('/getFarmer/:id',(req,res) => {
+router.get('/getFarmer/:id',verify,(req,res) => {
     Farmer.findAll({
         attributes: ['FirstName','LastName','Region','City','Address'],
         raw: true,
@@ -38,7 +38,7 @@ router.get('/getFarmer/:id',(req,res) => {
 
 
 //insert  Farmer 
-router.post('/insertFarmer',(req,res) => {
+router.post('/insertFarmer',verify,(req,res) => {
     Farmer.create({
         FirstName: req.body.firstName,
         LastName: req.body.lastName,
@@ -56,7 +56,7 @@ router.post('/insertFarmer',(req,res) => {
 
 
 //delete Farmer by id 
-router.delete('/deleteFarmer/:id',(req,res) => {
+router.delete('/deleteFarmer/:id',verify,(req,res) => {
     Farmer.destroy({
         where: {
             FarmerID: req.params.id
@@ -72,7 +72,7 @@ router.delete('/deleteFarmer/:id',(req,res) => {
 
 
 //update Farmer by id 
-router.put('/updateFarmer/:id',(req,res) => {
+router.put('/updateFarmer/:id',verify,(req,res) => {
     Farmer.update({
         FirstName: req.body.firstName,
         LastName: req.body.lastName,

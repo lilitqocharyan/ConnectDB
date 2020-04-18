@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 router.use(bodyParser.json())
 
 //get all Slaughterhouses
-router.get('/getSlaughterhouses',(req,res) => {
+router.get('/getSlaughterhouses',verify,(req,res) => {
     Slaughterhouse.findAll({
         attributes: ['Name','Region','City','Address'],
         raw: true
@@ -20,7 +20,7 @@ router.get('/getSlaughterhouses',(req,res) => {
 })
 
 //get  Slaughterhouse by id
-router.get('/getSlaughterhouse/:id',(req,res) => {
+router.get('/getSlaughterhouse/:id',verify,(req,res) => {
     Slaughterhouse.findAll({
         attributes: ['Name','Region','City','Address'],
         raw: true,
@@ -38,7 +38,7 @@ router.get('/getSlaughterhouse/:id',(req,res) => {
 
 
 //insert  Slaughterhouse 
-router.post('/insertSlaughterhouse',(req,res) => {
+router.post('/insertSlaughterhouse',verify,(req,res) => {
     Slaughterhouse.create({
         Name: req.body.name,
         Region: req.body.region,
@@ -55,7 +55,7 @@ router.post('/insertSlaughterhouse',(req,res) => {
 
 
 //delete Slaughterhouse by id 
-router.delete('/deleteSlaughterhouse/:id',(req,res) => {
+router.delete('/deleteSlaughterhouse/:id',verify,(req,res) => {
     Slaughterhouse.destroy({
         where: {
             SlaughterhouseID: req.params.id
@@ -71,7 +71,7 @@ router.delete('/deleteSlaughterhouse/:id',(req,res) => {
 
 
 //update Slaughterhouse by id 
-router.put('/updateSlaughterhouse/:id',(req,res) => {
+router.put('/updateSlaughterhouse/:id',verify,(req,res) => {
     Slaughterhouse.update({
         Name: req.body.name,
         Region: req.body.region,
